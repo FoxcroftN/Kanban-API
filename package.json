@@ -1,7 +1,7 @@
 {
-  "name": "Kanban-API",
+  "name": "project-2-api",
   "version": "1.0.0",
-  "description": "API for project 2",
+  "description": "api for project 2",
   "engines": {
     "node": "12.18.4"
   },
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FoxcroftN/Kanban-API.git"
+    "url": "git+https://github.com/henro47/project-2-api.git"
   },
-  "author": "FragileDevTeam",
+  "author": "HFR Potgieter",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/FoxcroftN/Kanban-API/issues"
+    "url": "https://github.com/henro47/project-2-api/issues"
   },
-  "homepage": "https://github.com/FoxcroftN/Kanban-API.#readme",
+  "homepage": "https://github.com/henro47/project-2-api#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",

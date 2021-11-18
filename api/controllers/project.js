@@ -13,14 +13,10 @@ exports.projects_get_all = (req, res, next) => {
                     _id: doc._id,
                     projName: doc.projName,
                     projUsers: doc.projUsers,
-                    sprintNumber : doc.sprintNumber,
-                    startDate: doc.startDate,
-                    endDate: doc.endDate,
-                    lists : doc.lists,
-                    sprintType: doc.sprintType,
+                    sprints: doc.sprints,
                     request : {
                         type : 'GET',
-                        url : 'https://kanban-api-624.herokuapp.com/' + doc._id
+                        url : 'https://mysterious-reef-01698.herokuapp.com/' + doc._id
                     }
                 }
             })
@@ -43,14 +39,11 @@ exports.projects_get_single = (req, res, next) =>{
         if(doc)
         {
             res.status(200).json({
-                _id: doc._id,
-                projName: doc.projName,
-                projUsers: doc.projUsers,
-                sprints: doc.sprints,
+                project : doc,
                 request: {
                     type : 'GET',
                     description : 'Get single project',
-                    url : 'https://kanban-api-624.herokuapp.com/'
+                    url : 'https://mysterious-reef-01698.herokuapp.com/'
 
                 }
             });
@@ -86,7 +79,7 @@ exports.projects_patch = (req, res, next) =>{
             message: 'project updated',
             request : {
                 type : 'GET',
-                url : 'https://kanban-api-624.herokuapp.com/' + id
+                url : 'https://mysterious-reef-01698.herokuapp.com/' + id
             }
         });
     })
@@ -108,7 +101,7 @@ exports.projects_delete = (req, res, next) =>{
             message : 'Project deleted successfully',
             request: {
                 type : 'POST',
-                url : 'https://kanban-api-624.herokuapp.com/',
+                url : 'https://mysterious-reef-01698.herokuapp.com/',
                 body: {
                     id : 'String',
                     projName: 'String',
@@ -137,44 +130,12 @@ exports.projects_create = (req, res, next) =>{
         }
         else
         {
-
-            console.log(projects);
-
-            // console.log(req.body.password)
-            // const project = new Projects({
-            //     _id : new mongoose.Types.ObjectId(),
-            //     projName: req.body.projName,
-            //     projUsers: req.body.projUsers,
-            //     sprints: [
-
-            //     ]
-            // });
-
-
-            const project =  mongoose.Schema({
-                _id: new mongoose.Types.ObjectId(),
+            //console.log(req.body.password)
+            const project = new Projects({
+                _id : new mongoose.Types.ObjectId(),
                 projName: req.body.projName,
                 projUsers: req.body.projUsers,
-                sprints: [
-                    {
-                        sprintNumber: req.body.sprints.sprintNumber,
-                        startDate: req.body.sprints.startDate,
-                        endDate: req.body.sprints.endDate,
-                        sprintType: req.body.sprints.sprintType,
-                        lists: [
-                            {
-                                listName: req.body.sprints.lists.listName,
-                                tasks: [
-                                    {
-                                        taskName: req.body.sprints.list.tasks.taskName,
-                                        taskUsers: req.body.sprints.list.tasks.taskUsers,
-                                    } 
-                                ]
-                            }
-                        ]
-                    }
-                    
-            ]
+                sprints: req.body.sprints
             });
             project.save()
             .then(result => {
