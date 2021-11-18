@@ -1,4 +1,4 @@
-const Sprints = require('../models/projectSchema');
+const Sprints = require('../models/sprintSchema');
 const mongoose = require('mongoose');
 
 exports.sprint_get_all = (req, res, next) => {
@@ -38,11 +38,7 @@ exports.sprint_get_single = (req, res, next) =>{
         if(doc)
         {
             res.status(200).json({
-                sprintNumber : doc.sprintNumber,
-                startDate: doc.startDate,
-                endDate: doc.endDate,
-                lists : doc.lists,
-                sprintType: doc.sprintType,
+                sprint: doc,
                 request: {
                     type : 'GET',
                     description : 'Get single sprint',

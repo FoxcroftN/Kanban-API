@@ -13,7 +13,11 @@ exports.projects_get_all = (req, res, next) => {
                     _id: doc._id,
                     projName: doc.projName,
                     projUsers: doc.projUsers,
-                    sprints: doc.sprints,
+                    sprintNumber : doc.sprintNumber,
+                    startDate: doc.startDate,
+                    endDate: doc.endDate,
+                    lists : doc.lists,
+                    sprintType: doc.sprintType,
                     request : {
                         type : 'GET',
                         url : 'https://kanban-api-624.herokuapp.com/' + doc._id
