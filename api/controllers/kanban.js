@@ -15,7 +15,7 @@ exports.get_lists = (req, res, next) => {
                 request: {
                     type : 'GET',
                     description : 'Get all lists and tasks for sprint',
-                    url : 'https://mysterious-reef-01698.herokuapp.com/' + id
+                    url : 'https://kanban-api-624.herokuapp.com/' + id
                 }
             });
         }
@@ -43,7 +43,7 @@ exports.update_lists = (req, res, next) =>{
             message: 'Lists updated',
             request : {
                 type : 'GET',
-                url : 'https://mysterious-reef-01698.herokuapp.com/' + id
+                url : 'https://kanban-api-624.herokuapp.com/' + id
             }
         });
     })
