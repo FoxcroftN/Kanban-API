@@ -137,26 +137,29 @@ exports.projects_create = (req, res, next) =>{
         }
         else
         {
+
+            console.log(projects);
+
             //console.log(req.body.password)
-            const project = new Projects({
-                _id : new mongoose.Types.ObjectId(),
-                projName: req.body.projName,
-                projUsers: req.body.projUsers,
-                sprints: req.body.sprints
-            });
-            project.save()
-            .then(result => {
-                console.log(result);
-                res.status(201).json({
-                    message: 'project created'
-                });
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(500).json({
-                    error: err
-                });
-            });
+            // const project = new Projects({
+            //     _id : new mongoose.Types.ObjectId(),
+            //     projName: req.body.projName,
+            //     projUsers: req.body.projUsers,
+            //     sprints: req.body.sprints
+            // });
+            // project.save()
+            // .then(result => {
+            //     console.log(result);
+            //     res.status(201).json({
+            //         message: 'project created'
+            //     });
+            // })
+            // .catch(err => {
+            //     console.log(err);
+            //     res.status(500).json({
+            //         error: err
+            //     });
+            // });
         }
     })
 }
