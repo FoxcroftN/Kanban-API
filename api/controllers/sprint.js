@@ -1,6 +1,5 @@
 const Sprints = require('../models/sprintSchema');
 const mongoose = require('mongoose');
-const doc =
 
 exports.sprint_get_all = (req, res, next) => {
     Sprints.find()
@@ -68,9 +67,7 @@ exports.sprint_get_single = (req, res, next) =>{
 exports.sprint_patch = (req, res, next) =>{
 
     console.log(req.body)
-    
-
-
+    // const id = req.params.sprName;
     // const updateOps = {};
 
     // for(const ops of req.body)
