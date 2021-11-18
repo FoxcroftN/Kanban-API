@@ -1,4 +1,4 @@
-const Sprints = require('../models/sprintSchema');
+const Sprints = require('../models/projectSchema');
 const mongoose = require('mongoose');
 
 exports.sprint_get_all = (req, res, next) => {
