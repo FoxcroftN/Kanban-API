@@ -13,11 +13,9 @@ const projectSchema =  mongoose.Schema({
             sprintType: {type: Number, required: false},
             lists: [
                 {
-                    _id: mongoose.Schema.Types.ObjectId,
                     listName: {type: String, required: true, default: ''},
                     tasks: [
                         {
-                            _id: mongoose.Schema.Types.ObjectId,
                             taskName: {type: String, required: true, default: ''},
                             taskUsers: [{type: String, ref: 'User', default: ''}],
                         } 
