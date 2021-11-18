@@ -19,6 +19,6 @@ const sprintSchema =  mongoose.Schema({
             ]
         }
     ]
-});
+}, {strict: false});
 
 module.exports = mongoose.model('Sprint',sprintSchema);
