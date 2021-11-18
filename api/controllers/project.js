@@ -16,7 +16,7 @@ exports.projects_get_all = (req, res, next) => {
                     sprints: doc.sprints,
                     request : {
                         type : 'GET',
-                        url : 'https://mysterious-reef-01698.herokuapp.com/' + doc._id
+                        url : 'https://kanban-api-624.herokuapp.com/' + doc._id
                     }
                 }
             })
@@ -43,7 +43,7 @@ exports.projects_get_single = (req, res, next) =>{
                 request: {
                     type : 'GET',
                     description : 'Get single project',
-                    url : 'https://mysterious-reef-01698.herokuapp.com/'
+                    url : 'https://kanban-api-624.herokuapp.com/'
 
                 }
             });
@@ -79,7 +79,7 @@ exports.projects_patch = (req, res, next) =>{
             message: 'project updated',
             request : {
                 type : 'GET',
-                url : 'https://mysterious-reef-01698.herokuapp.com/' + id
+                url : 'https://kanban-api-624.herokuapp.com/' + id
             }
         });
     })
@@ -101,7 +101,7 @@ exports.projects_delete = (req, res, next) =>{
             message : 'Project deleted successfully',
             request: {
                 type : 'POST',
-                url : 'https://mysterious-reef-01698.herokuapp.com/',
+                url : 'https://kanban-api-624.herokuapp.com/',
                 body: {
                     id : 'String',
                     projName: 'String',
