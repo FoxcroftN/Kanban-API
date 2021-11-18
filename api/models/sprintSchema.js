@@ -10,10 +10,10 @@ const sprintSchema =  mongoose.Schema({
     sprintType: {type: String, required: false},
     lists: [
         {
-            listName: {type: String, required: true, default: ''},
+            listName: {type: String, required: false, default: 'list'},
             tasks: [
                 {
-                    taskName: {type: String, required: true, default: ''},
+                    taskName: {type: String, required: false, default: 'task'},
                     taskUsers: [{type: String, ref: 'User', default: ''}],
                 } 
             ]

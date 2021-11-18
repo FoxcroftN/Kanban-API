@@ -125,7 +125,11 @@ exports.sprint_create = (req, res, next) =>{
         const sprint = new Sprints({
             _id : new mongoose.Types.ObjectId(),
             sprName: req.body.sprName,
-            project: req.body.project
+            project: req.body.project,
+            startDate: req.body.startDate,
+            endDate: req.body.endDate,
+            sprintType: req.body.sprintType,
+            lists: req.body.lists,
         });
         sprint.save()
         .then(result => {
