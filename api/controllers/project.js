@@ -131,6 +131,7 @@ exports.projects_create = (req, res, next) =>{
         else
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             //console.log(req.body.password)
             const project = new Projects({
                 _id : new mongoose.Types.ObjectId(),
@@ -176,6 +177,28 @@ exports.projects_create = (req, res, next) =>{
             //     });
             // });
 >>>>>>> parent of 1d25bf0 (Update project.js)
+=======
+            //console.log(req.body.password)
+            const project = new Projects({
+                _id : new mongoose.Types.ObjectId(),
+                projName: req.body.projName,
+                projUsers: req.body.projUsers,
+                sprints: req.body.sprints
+            });
+            project.save()
+            .then(result => {
+                console.log(result);
+                res.status(201).json({
+                    message: 'project created'
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                    error: err
+                });
+            });
+>>>>>>> parent of a7ef7f4 (Update project.js)
         }
     })
 }
