@@ -140,26 +140,55 @@ exports.projects_create = (req, res, next) =>{
 
             console.log(projects);
 
-            //console.log(req.body.password)
+            // console.log(req.body.password)
             // const project = new Projects({
             //     _id : new mongoose.Types.ObjectId(),
             //     projName: req.body.projName,
             //     projUsers: req.body.projUsers,
-            //     sprints: req.body.sprints
+            //     sprints: [
+
+            //     ]
             // });
-            // project.save()
-            // .then(result => {
-            //     console.log(result);
-            //     res.status(201).json({
-            //         message: 'project created'
-            //     });
-            // })
-            // .catch(err => {
-            //     console.log(err);
-            //     res.status(500).json({
-            //         error: err
-            //     });
-            // });
+
+
+            const project =  mongoose.Schema({
+                _id: new mongoose.Types.ObjectId(),
+                projName: req.body.projName,
+                projUsers: req.body.projUsers,
+                sprints: [
+                    {
+                        sprintNumber: req.body.sprints.sprintNumber,
+                        startDate: req.body.sprints.startDate,
+                        endDate: req.body.sprints.endDate,
+                        sprintType: req.body.sprints.sprintType,
+                        lists: [
+                            {
+                                listName: req.body.sprints.lists.listName,
+                                tasks: [
+                                    {
+                                        taskName: req.body.sprints.list.tasks.taskName,
+                                        taskUsers: req.body.sprints.list.tasks.taskUsers,
+                                    } 
+                                ]
+                            }
+                        ]
+                    }
+                    
+            ]
+            });
+            project.save()
+            .then(result => {
+                console.log(result);
+                res.status(201).json({
+                    message: 'project created'
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                    error: err
+                });
+            });
         }
     })
 }
