@@ -43,7 +43,10 @@ exports.projects_get_single = (req, res, next) =>{
         if(doc)
         {
             res.status(200).json({
-                project: doc,
+                _id: doc._id,
+                projName: doc.projName,
+                projUsers: doc.projUsers,
+                sprints: doc.sprints,
                 request: {
                     type : 'GET',
                     description : 'Get single project',
