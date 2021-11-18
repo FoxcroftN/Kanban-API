@@ -120,29 +120,30 @@ exports.sprint_delete = (req, res, next) =>{
 }
 
 exports.sprint_create = (req, res, next) =>{
-    Sprints.find({sprName: req.body.sprName}).exec()
-    .then(() => {
-        const sprint = new Sprints({
-            _id : new mongoose.Types.ObjectId(),
-            sprName: req.body.sprName,
-            project: req.body.project,
-            startDate: req.body.startDate,
-            endDate: req.body.endDate,
-            sprintType: req.body.sprintType,
-            lists: req.body.lists,
-        });
-        sprint.save()
-        .then(result => {
-            console.log(result);
-            res.status(201).json({
-                message: 'sprint created'
-            });
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
-            });
-        });
-    })
+    // Sprints.find({sprName: req.body.sprName}).exec()
+    // .then(() => {
+    //     const sprint = new Sprints({
+    //         // _id : new mongoose.Types.ObjectId(),
+    //         // sprName: req.body.sprName,
+    //         // project: req.body.project,
+    //         // startDate: req.body.startDate,
+    //         // endDate: req.body.endDate,
+    //         // sprintType: req.body.sprintType,
+    //         // lists: req.body.lists,
+    //     });
+    //     sprint.save()
+    //     .then(result => {
+    //         console.log(result);
+    //         res.status(201).json({
+    //             message: 'sprint created'
+    //         });
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //         res.status(500).json({
+    //             error: err
+    //         });
+    //     });
+    // })
+    console.log(req.body);
 }
