@@ -15,7 +15,7 @@ exports.sprint_get_all = (req, res, next) => {
                     project: doc.project,
                     request : {
                         type : 'GET',
-                        url : 'https://kanban-api-624.herokuapp.com/' + doc._id
+                        url : 'https://mysterious-reef-01698.herokuapp.com/' + doc._id
                     }
                 }
             })
@@ -43,7 +43,7 @@ exports.sprint_get_single = (req, res, next) =>{
                 request: {
                     type : 'GET',
                     description : 'Get single sprint',
-                    url : 'https://kanban-api-624.herokuapp.com/'
+                    url : 'https://mysterious-reef-01698.herokuapp.com/'
 
                 }
             });
@@ -67,30 +67,30 @@ exports.sprint_get_single = (req, res, next) =>{
 exports.sprint_patch = (req, res, next) =>{
 
     console.log(req.body)
-    const id = req.params.sprName;
-    const updateOps = {};
+    // const id = req.params.sprName;
+    // const updateOps = {};
 
-    for(const ops of req.body)
-    {
-        updateOps[ops.propName] = ops.value;
-    }
+    // for(const ops of req.body)
+    // {
+    //     updateOps[ops.propName] = ops.value;
+    // }
 
-    Sprints.update({sprName: id}, {$set: updateOps}).exec()
-    .then(result => {
-        res.status(200).json({
-            message: 'sprint updated',
-            request : {
-                type : 'GET',
-                url : 'https://kanban-api-624.herokuapp.com/' + id
-            }
-        });
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
-        });
-    });
+    // Sprints.update({sprName: id}, {$set: updateOps}).exec()
+    // .then(result => {
+    //     res.status(200).json({
+    //         message: 'sprint updated',
+    //         request : {
+    //             type : 'GET',
+    //             url : 'https://mysterious-reef-01698.herokuapp.com/' + id
+    //         }
+    //     });
+    // })
+    // .catch(err => {
+    //     console.log(err);
+    //     res.status(500).json({
+    //         error: err
+    //     });
+    // });
 
 }
 
@@ -102,7 +102,7 @@ exports.sprint_delete = (req, res, next) =>{
             message : 'Sprint deleted successfully',
             request: {
                 type : 'POST',
-                url : 'https://kanban-api-624.herokuapp.com/',
+                url : 'https://mysterious-reef-01698.herokuapp.com/',
                 body: {
                     id : 'String',
                     sprName: 'String',
