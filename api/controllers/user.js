@@ -17,7 +17,7 @@ exports.user_get_all = (req, res, next) => {
                     projects: doc.projects,
                     request : {
                         type : 'GET',
-                        url : 'https://kanban-api-624.herokuapp.com/' + doc._id
+                        url : 'https://mysterious-reef-01698.herokuapp.com/' + doc._id
                     }
                 }
             })
@@ -44,7 +44,7 @@ exports.user_get_single = (req, res, next) =>{
                 request: {
                     type : 'GET',
                     description : 'Get single user',
-                    url : 'https://kanban-api-624.herokuapp.com/'
+                    url : 'https://mysterious-reef-01698.herokuapp.com/'
 
                 }
             });
@@ -79,7 +79,7 @@ exports.user_patch = (req, res, next) =>{
             message: 'User updated',
             request : {
                 type : 'GET',
-                url : 'https://kanban-api-624.herokuapp.com/' + id
+                url : 'https://mysterious-reef-01698.herokuapp.com/' + id
             }
         });
     })
@@ -101,7 +101,7 @@ exports.user_delete = (req, res, next) =>{
             message : 'User deleted successfully',
             request: {
                 type : 'POST',
-                url : 'https://kanban-api-624.herokuapp.com/',
+                url : 'https://mysterious-reef-01698.herokuapp.com/',
                 body: {
                     id : 'String',
                     username: 'String',
