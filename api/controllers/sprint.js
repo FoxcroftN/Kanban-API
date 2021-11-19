@@ -3,19 +3,14 @@ const mongoose = require('mongoose');
 
 exports.sprint_get_all = (req, res, next) => {
     Sprints.find()
-    .select('_id sprName project startDate endDate lists')
+    .select('_id sprName project startDate endDate tasks')
     .exec()
     .then(docs => {
         const response = {
             count: docs.length,
             sprints: docs.map(doc => {
                 return {
-                    _id: doc._id,
-                    sprName: doc.sprName,
-                    project: doc.project,
-                    startDate : doc.startDate,
-                    endDate : doc.endDate,
-                    tasks: doc.tasks,
+                    sprint: doc,
                     request : {
                         type : 'GET',
                         url : 'https://mysterious-reef-01698.herokuapp.com/' + doc._id
@@ -34,19 +29,14 @@ exports.sprint_get_all = (req, res, next) => {
 }
 
 exports.sprint_get_single = (req, res, next) =>{
-    Sprints.find({project: req.params.project})
-    .select('_id sprName project lists')
+    Sprints.find({sprName: req.params.sprName, project: req.params.project})
+    .select('_id sprName project startDate endDate tasks')
     .exec()
     .then(doc => {
         if(doc)
         {
             res.status(200).json({
-                _id: doc._id,
-                sprName: req.body.sprName,
-                project: req.body.project,
-                startDate: req.body.startDate,
-                endDate: req.body.endDate,
-                tasks: req.body.tasks,
+                sprint: doc,
                 request: {
                     type : 'GET',
                     description : 'Get single sprint',
@@ -72,15 +62,14 @@ exports.sprint_get_single = (req, res, next) =>{
 
 //Change to find user by email
 exports.sprint_patch = (req, res, next) =>{
-    const id = req.params.sprName;
     const updateOps = {};
 
-    for(const ops of req.body)
+    for(const [key, value] of Object.entries(req.body))
     {
-        updateOps[ops.propName] = ops.value;
+        updateOps[key] = value;
     }
 
-    Sprints.update({sprName: id}, {$set: updateOps}).exec()
+    Sprints.update({sprName: req.params.sprName, project: req.params.project}, {$set: updateOps}).exec()
     .then(result => {
         res.status(200).json({
             message: 'sprint updated',

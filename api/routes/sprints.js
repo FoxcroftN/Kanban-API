@@ -7,9 +7,9 @@ require('dotenv').config();
 
 router.get('/',SprintsController.sprint_get_all);
 
-router.get('/:project', SprintsController.sprint_get_single);
+router.get('/:sprName/:project', SprintsController.sprint_get_single);
 
-router.patch('/:sprName', SprintsController.sprint_patch);
+router.patch('/:sprName/:project', SprintsController.sprint_patch);
 
 router.delete('/:sprName',SprintsController.sprint_delete);
 
