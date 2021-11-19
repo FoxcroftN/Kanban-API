@@ -7,18 +7,19 @@ const sprintSchema =  mongoose.Schema({
     project: {type: String, ref: 'Projects'},
     startDate: {type: String, required: false},
     endDate: {type: String, required: false},
-    sprintType: {type: String, required: false},
     lists: [
         {
-            listName: {type: String, required: false, default: 'list'},
+            _id: mongoose.Schema.Types.ObjectId,
+            listName: {type: String, required: true, default: ''},
             tasks: [
                 {
-                    taskName: {type: String, required: false, default: 'task'},
-                    taskUsers: [{type: String, ref: 'User', default: ''}],
+                    _id: mongoose.Schema.Types.ObjectId,
+                    taskName: {type: String, required: true, default: ''},
+                    taskUsers: [{type: String, default: ''}],
                 } 
             ]
         }
     ]
-}, {strict: false});
+});
 
 module.exports = mongoose.model('Sprint',sprintSchema);

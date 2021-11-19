@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 exports.sprint_get_all = (req, res, next) => {
     Sprints.find()
-    .select('_id sprName project')
+    .select('_id sprName project startDate endDate lists')
     .exec()
     .then(docs => {
         const response = {
@@ -13,9 +13,12 @@ exports.sprint_get_all = (req, res, next) => {
                     _id: doc._id,
                     sprName: doc.sprName,
                     project: doc.project,
+                    startDate : doc.startDate,
+                    endDate : doc.endDate,
+                    lists: doc.lists,
                     request : {
                         type : 'GET',
-                        url : 'https://kanban-api-624.herokuapp.com/' + doc._id
+                        url : 'https://mysterious-reef-01698.herokuapp.com/' + doc._id
                     }
                 }
             })
@@ -43,7 +46,7 @@ exports.sprint_get_single = (req, res, next) =>{
                 request: {
                     type : 'GET',
                     description : 'Get single sprint',
-                    url : 'https://kanban-api-624.herokuapp.com/'
+                    url : 'https://mysterious-reef-01698.herokuapp.com/'
 
                 }
             });
@@ -65,8 +68,6 @@ exports.sprint_get_single = (req, res, next) =>{
 
 //Change to find user by email
 exports.sprint_patch = (req, res, next) =>{
-
-    console.log(req.body)
     const id = req.params.sprName;
     const updateOps = {};
 
@@ -81,7 +82,7 @@ exports.sprint_patch = (req, res, next) =>{
             message: 'sprint updated',
             request : {
                 type : 'GET',
-                url : 'https://kanban-api-624.herokuapp.com/' + id
+                url : 'https://mysterious-reef-01698.herokuapp.com/' + id
             }
         });
     })
@@ -102,7 +103,7 @@ exports.sprint_delete = (req, res, next) =>{
             message : 'Sprint deleted successfully',
             request: {
                 type : 'POST',
-                url : 'https://kanban-api-624.herokuapp.com/',
+                url : 'https://mysterious-reef-01698.herokuapp.com/',
                 body: {
                     id : 'String',
                     sprName: 'String',
@@ -120,30 +121,28 @@ exports.sprint_delete = (req, res, next) =>{
 }
 
 exports.sprint_create = (req, res, next) =>{
-    // Sprints.find({sprName: req.body.sprName}).exec()
-    // .then(() => {
-    //     const sprint = new Sprints({
-    //         // _id : new mongoose.Types.ObjectId(),
-    //         // sprName: req.body.sprName,
-    //         // project: req.body.project,
-    //         // startDate: req.body.startDate,
-    //         // endDate: req.body.endDate,
-    //         // sprintType: req.body.sprintType,
-    //         // lists: req.body.lists,
-    //     });
-    //     sprint.save()
-    //     .then(result => {
-    //         console.log(result);
-    //         res.status(201).json({
-    //             message: 'sprint created'
-    //         });
-    //     })
-    //     .catch(err => {
-    //         console.log(err);
-    //         res.status(500).json({
-    //             error: err
-    //         });
-    //     });
-    // })
-    console.log(req.body);
+    Sprints.find({sprName: req.body.sprName}).exec()
+    .then(() => {
+        const sprint = new Sprints({
+            _id : new mongoose.Types.ObjectId(),
+            sprName: req.body.sprName,
+            project: req.body.project,
+            startDate: req.body.startDate,
+            endDate: req.body.endDate,
+            lists: req.body.lists
+        });
+        sprint.save()
+        .then(result => {
+            console.log(result);
+            res.status(201).json({
+                message: 'sprint created'
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+    })
 }
