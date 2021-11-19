@@ -15,7 +15,7 @@ exports.sprint_get_all = (req, res, next) => {
                     project: doc.project,
                     startDate : doc.startDate,
                     endDate : doc.endDate,
-                    lists: doc.lists,
+                    tasks: doc.tasks,
                     request : {
                         type : 'GET',
                         url : 'https://mysterious-reef-01698.herokuapp.com/' + doc._id
@@ -41,8 +41,12 @@ exports.sprint_get_single = (req, res, next) =>{
         if(doc)
         {
             res.status(200).json({
-                sprint : doc,
-                lists : doc.lists,
+                _id: doc._id,
+                sprName: req.body.sprName,
+                project: req.body.project,
+                startDate: req.body.startDate,
+                endDate: req.body.endDate,
+                tasks: req.body.tasks,
                 request: {
                     type : 'GET',
                     description : 'Get single sprint',
@@ -129,7 +133,7 @@ exports.sprint_create = (req, res, next) =>{
             project: req.body.project,
             startDate: req.body.startDate,
             endDate: req.body.endDate,
-            lists: req.body.lists
+            tasks: req.body.tasks
         });
         sprint.save()
         .then(result => {
