@@ -101,11 +101,42 @@ exports.add_task = (req, res, next) =>{
     Sprints.updateOne({sprName: req.params.sprName, project: req.params.project}, {$push: {"tasks": updateOps}}).exec()
     .then(result => {
         res.status(200).json({
-            message: 'sprint updated',
+            message: 'task updated',
             request : {
                 type : 'GET',
                 url : 'https://mysterious-reef-01698.herokuapp.com/',
                 content: updateOps
+            }
+        });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error: err
+        });
+    });
+}
+
+exports.move_task = (req, res, next) =>{
+    const updateOps = {};
+
+    for(const [key, value] of Object.entries(req.body))
+    {
+        updateOps[key] = value;
+    }
+
+
+
+    Sprints.update({'lists.listName': req.params.listName}, {'$set': {
+        'lists.$.listNumber': updateOps
+    }}).exec()
+    .then(result => {
+        res.status(200).json({
+            message: 'task updated',
+            request : {
+                type : 'GET',
+                url : 'https://mysterious-reef-01698.herokuapp.com/',
+                content: req.params.listName
             }
         });
     })
