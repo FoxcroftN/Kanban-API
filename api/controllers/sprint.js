@@ -75,7 +75,7 @@ exports.sprint_patch = (req, res, next) =>{
             message: 'sprint updated',
             request : {
                 type : 'GET',
-                url : 'https://mysterious-reef-01698.herokuapp.com/' + id
+                url : 'https://mysterious-reef-01698.herokuapp.com/'
             }
         });
     })
