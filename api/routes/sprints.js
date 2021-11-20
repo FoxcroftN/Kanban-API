@@ -11,7 +11,7 @@ router.get('/:sprName/:project', SprintsController.sprint_get_single);
 
 router.patch('/:sprName/:project', SprintsController.sprint_patch);
 router.patch('/addtask/:sprName/:project', SprintsController.add_task);
-router.patch('/movetask/:sprName/:project/:listNumber', SprintsController.move_task);
+router.patch('/movetask/:sprName/:project/:taskName', SprintsController.move_task);
 
 router.delete('/:sprName',SprintsController.sprint_delete);
 

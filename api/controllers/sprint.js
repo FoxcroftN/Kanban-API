@@ -127,8 +127,8 @@ exports.move_task = (req, res, next) =>{
 
 
 
-    Sprints.update({'lists.listName': req.params.listName}, {'$set': {
-        'lists.$.listNumber': updateOps
+    Sprints.updateOne({sprName: req.params.sprName, project: req.params.project, 'tasks.taskName': req.params.taskName}, {'$set': {
+        'tasks.$.listNumber': updateOps['listNumber']
     }}).exec()
     .then(result => {
         res.status(200).json({
@@ -136,7 +136,6 @@ exports.move_task = (req, res, next) =>{
             request : {
                 type : 'GET',
                 url : 'https://mysterious-reef-01698.herokuapp.com/',
-                content: req.params.listName
             }
         });
     })
