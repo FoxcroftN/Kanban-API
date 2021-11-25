@@ -28,6 +28,7 @@ exports.sprint_get_all = (req, res, next) => {
     });
 }
 
+
 exports.sprint_get_single = (req, res, next) =>{
     Sprints.find({sprName: req.params.sprName, project: req.params.project})
     .select('_id sprName project startDate endDate tasks')
@@ -40,6 +41,38 @@ exports.sprint_get_single = (req, res, next) =>{
                 request: {
                     type : 'GET',
                     description : 'Get single sprint',
+                    url : 'https://mysterious-reef-01698.herokuapp.com/'
+
+                }
+            });
+        }
+        else
+        {
+            res.status(404).json({
+                message: 'Entry not found in database'
+            });
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error: err
+        });
+    });
+}
+
+exports.get_sprint_in_project = (req, res, next) =>{
+    Sprints.find({project: req.params.project})
+    .select('_id sprName project tasks')
+    .exec()
+    .then(doc => {
+        if(doc)
+        {
+            res.status(200).json({
+                sprint : doc,
+                request: {
+                    type : 'GET',
+                    description : 'Get single sprint per project',
                     url : 'https://mysterious-reef-01698.herokuapp.com/'
 
                 }
