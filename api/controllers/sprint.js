@@ -72,7 +72,7 @@ exports.get_sprint_in_project = (req, res, next) =>{
                 sprint : doc,
                 request: {
                     type : 'GET',
-                    description : 'Get single sprint per project',
+                    description : 'Get single sprint per product development',
                     url : 'https://mysterious-reef-01698.herokuapp.com/'
 
                 }

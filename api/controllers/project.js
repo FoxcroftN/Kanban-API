@@ -42,7 +42,7 @@ exports.projects_get_single = (req, res, next) =>{
                 project : doc,
                 request: {
                     type : 'GET',
-                    description : 'Get single project',
+                    description : 'Get single product development',
                     url : 'https://mysterious-reef-01698.herokuapp.com/'
 
                 }
@@ -76,7 +76,7 @@ exports.projects_patch = (req, res, next) =>{
     Projects.update({projName: id}, {$set: updateOps}).exec()
     .then(result => {
         res.status(200).json({
-            message: 'project updated',
+            message: 'product development updated successfully',
             request : {
                 type : 'GET',
                 url : 'https://mysterious-reef-01698.herokuapp.com/' + id
@@ -98,7 +98,7 @@ exports.projects_delete = (req, res, next) =>{
     Projects.remove({projName: id}).exec()
     .then(result => {
         res.status(200).json({
-            message : 'Project deleted successfully',
+            message : 'product development deleted successfully',
             request: {
                 type : 'POST',
                 url : 'https://mysterious-reef-01698.herokuapp.com/',
@@ -125,7 +125,7 @@ exports.projects_create = (req, res, next) =>{
         if(projects.length > 0)
         {
             return res.status(422).json({
-                message: 'Project already exists in database'
+                message: 'Product development already exists in database'
             });
         }
         else
