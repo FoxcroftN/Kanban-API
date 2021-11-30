@@ -141,7 +141,7 @@ exports.projects_create = (req, res, next) =>{
             .then(result => {
                 console.log(result);
                 res.status(201).json({
-                    message: 'project created'
+                    message: 'product development created'
                 });
             })
             .catch(err => {
